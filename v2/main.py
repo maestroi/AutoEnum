@@ -21,34 +21,49 @@ def fl():
 def print_menu():
     header()
     print 30 * "-" , "MENU" , 30 * "-"
-    print "1. Meerdere ip adressen scan"
-    print "2. Single ip adres scan"
-    print "3. Test stuff"
+    print "1. IP-Range scan"
+    print "2. IP Scan"
+    print "3. Test Ttool"
     print "4. nmap scan op 445"
-    print "5. RESET"
-    print "6. Exit"
+    print "5. reset tool"
+    print "6. update"
+    print "7. Exit"
     print 67 * "-"
+
+def update_menu():
+    print 30 * "-" , "MENU" , 30 * "-"
+    print "1 for Stable"
+    print "2 for Beta"
+    print "3 Back"
+    print 67 * "-"
+
 
 loop=True
 
 while loop:          ## While loop which will keep going until loop = False
     print_menu()    ## Displays menu
-    choice = input("Enter your choice [1-6]: ")
+    choice = input("Enter your choice [1-7]: ")
     if choice==1:
         cls()
         header()
         tijd = time.strftime("%H-%M-%S")
+        print "example 0.0.0"
         ipadres = raw_input("ip-range: ")
-        aantalip = input("aantal ip-adressen: ")
-        count = 0
+        count = input("begin vanaf: ")
+        aantal = input("tot ip-adres: ") +1
         os.system("mkdir %s" % (tijd))
-        while (count < aantalip):
+        x = 1
+        while (x):
             cls()
+            print "scanning.... %s.%s" % (ipadres,count)
             os.system("enum4linux %s.%s > %s/%s.%s.txt" % (ipadres,count,tijd,ipadres,count))
-            print 'IP nu: %s van %s'%(count,aantalip)
+            print "Done!"
             time.sleep(3)
-            count = count + 1
-        print "%s ip-adressen gescanned \n" % count
+            count += 1
+            if count >= aantal:
+                os.system("ls %s" % (tijd))
+                time.sleep(3)
+                x = x - 1
     ## scan multi ip's and save them as ip name's
     elif choice==2:
         cls()
@@ -97,7 +112,9 @@ while loop:          ## While loop which will keep going until loop = False
                 count = count + 1
                 ##cls()
             print "ip-lijst gegenereerd! \n"
-            time.sleep(2)
+        os.system('cat -s %s-iplist.txt | grep open | cut -f1,2 -d" " > %s-cat.txt' % (tijd,tijd))
+        os.system('cat %s-cat.txt' % (tijd))
+        time.sleep(2)
         ## scan with nmap
         ## cat -s lol.txt | grep open | cut -f1,2 -d" " > test1.txt
     elif choice==5:
@@ -106,10 +123,34 @@ while loop:          ## While loop which will keep going until loop = False
         ## reload application test purpuse only
     elif choice==6:
         cls()
+        update = True
+        while update:
+            header()
+            update_menu()
+            choice = input("Enter your choice [1-3]: ")
+            if choice==1:
+                cls()
+                print "je hebt gekozen voor stable"
+                os.system("wget https://github.com/maestroi/autoenum/archive/master.zip")
+                #os.system("tar zxvf master.zip")
+                time.sleep(3)
+            elif choice==2:
+                cls()
+                print "je hebt gekozen voor beta"
+                os.system("wget https://github.com/maestroi/autoenum/archive/dubbel.zip")
+                #os.system("tar zxvf master.zip")
+                time.sleep(3)
+            elif choice==3:
+                cls()
+                update = False
+        os.execl(sys.executable, sys.executable, *sys.argv)
+        ## reload application test purpuse only
+    elif choice==7:
+        cls()
         print "quitting!!"
         loop=False # This will make end to the while loop
     else:
-        # error if option is higher than 6
+        # error if option is higher than 7
         cls()
-        raw_input("Wrong option selection. Enter any key to try again..")
+        raw_input("Wrong option! i think you need coffee and enter any key to try again..")
         cls()
