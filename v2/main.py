@@ -131,19 +131,18 @@ while loop:          ## While loop which will keep going until loop = False
             if choice==1:
                 cls()
                 print "je hebt gekozen voor stable"
-                os.system("wget https://github.com/maestroi/autoenum/archive/master.zip")
-                #os.system("tar zxvf master.zip")
+                os.system("wget https://github.com/maestroi/autoenum/blob/master/main.py")
                 time.sleep(3)
+                os.execl(sys.executable, sys.executable, *sys.argv)
             elif choice==2:
                 cls()
                 print "je hebt gekozen voor beta"
-                os.system("wget https://github.com/maestroi/autoenum/archive/dubbel.zip")
-                #os.system("tar zxvf master.zip")
+                os.system("wget https://raw.githubusercontent.com/maestroi/autoenum/dubbel/v2/main.py")
                 time.sleep(3)
+                os.execl(sys.executable, sys.executable, *sys.argv)
             elif choice==3:
                 cls()
                 update = False
-        os.execl(sys.executable, sys.executable, *sys.argv)
         ## reload application test purpuse only
     elif choice==7:
         cls()
