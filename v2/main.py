@@ -11,10 +11,6 @@ def header():
     print " |_|  |_|\__,_|\___||___/\__|_|  \___/|_|"
     print "                                         "
 
-def tijd():
-    from time import strftime
-    print strftime("%H:%M:%S")
-
 def cls():
     os.system("clear")
 
@@ -27,25 +23,27 @@ def print_menu():
     print "1. Meerdere ip adressen scan"
     print "2. Single ip adres scan"
     print "3. Test stuff"
-    print "4. RESET"
-    print "5. Exit"
+    print "4. nmap scan op 445"
+    print "5. RESET"
+    print "6. Exit"
     print 67 * "-"
 
 loop=True
 
 while loop:          ## While loop which will keep going until loop = False
     print_menu()    ## Displays menu
-    choice = input("Enter your choice [1-5]: ")
+    choice = input("Enter your choice [1-6]: ")
     if choice==1:
-        os.system("clear")
+        cls()
         header()
+        tijd = time.strftime("%H-%M-%S")
         ipadres = raw_input("ip-range: ")
         aantalip = input("aantal ip-adressen: ")
         count = 0
-        os.system("mkdir %s" % ipadres)
+        os.system("mkdir %s" % (tijd))
         while (count < aantalip):
             cls()
-            os.system("enum4linux %s.%s > /%s/%s.%s.txt" % (ipadres,count,ipadres,ipadres,count))
+            os.system("enum4linux %s.%s > %s/%s.%s.txt" % (ipadres,count,tijd,ipadres,count))
             print 'IP nu: %s van %s'%(count,aantalip)
             time.sleep(3)
             count = count + 1
@@ -69,21 +67,41 @@ while loop:          ## While loop which will keep going until loop = False
             time.sleep(2)
         ## scan a single ip and output it with ip as name
     elif choice==3:
+        tijd = time.strftime("%H:%M:%S")
         cls()
         header()
-        print tijd()
+        print tijd
         time.sleep(3)
         ## test commands
     elif choice==4:
         cls()
+        header()
+        tijd = time.strftime("%H-%M-%S")
+        ipadres = raw_input("ip-adres range: ")
+        count = 0
+        while (count < 1):
+            if os.path.exists(ipadres):
+                os.system("rm %s-iplist.txt " % tijd)
+            else:
+                print "Start scan!"
+                os.system("nmap -p 445 %s -oG %s-iplist.txt -v" % (ipadres,tijd))
+                time.sleep(3)
+                count = count + 1
+                ##cls()
+            print "ip-lijst gegenereerd! \n"
+            time.sleep(2)
+        ## scan with nmap
+        ## cat -s lol.txt | grep open | cut -f1,2 -d" " > test1.txt
+    elif choice==5:
+        cls()
         os.system("python main.py")
         ## reload application test purpuse only
-    elif choice==5:
+    elif choice==6:
         cls()
         print "quitting!!"
         loop=False # This will make end to the while loop
     else:
-        # error if option is higher than 5
+        # error if option is higher than 6
         cls()
         raw_input("Wrong option selection. Enter any key to try again..")
         cls()
