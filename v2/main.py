@@ -1,6 +1,7 @@
 __author__ = 'maestroi'
 import os
 import time
+import sys
 
 def header():
     print "  __  __                 _             _ "
@@ -67,11 +68,18 @@ while loop:          ## While loop which will keep going until loop = False
             time.sleep(2)
         ## scan a single ip and output it with ip as name
     elif choice==3:
-        tijd = time.strftime("%H:%M:%S")
         cls()
         header()
-        print tijd
-        time.sleep(3)
+        ipadres = raw_input("ip-range: ")
+        count = input("begin vanaf: ")
+        aantal = input("tot ip-adres: ") +1
+        ##totaal = count+aantal
+        x = 1
+        while (x):
+            print "ik ben ip %s.%s" % (ipadres,count)
+            count += 1
+            if count >= aantal:
+                x = x - 1
         ## test commands
     elif choice==4:
         cls()
@@ -94,7 +102,7 @@ while loop:          ## While loop which will keep going until loop = False
         ## cat -s lol.txt | grep open | cut -f1,2 -d" " > test1.txt
     elif choice==5:
         cls()
-        os.system("python main.py")
+        os.execl(sys.executable, sys.executable, *sys.argv)
         ## reload application test purpuse only
     elif choice==6:
         cls()
