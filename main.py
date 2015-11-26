@@ -24,11 +24,11 @@ def print_menu():
     print 30 * "-" , "MENU" , 30 * "-"
     print "1. IP-Range scan"
     print "2. IP Scan"
-    print "3. Test Ttool"
-    print "4. nmap scan op 445"
-    print "5. reset tool"
-    print "6. update"
-    print "7. Exit"
+    print "3. Test Tool"
+    print "4. NMAP scan on 445"
+    print "5. Update"
+    print "6. Cleanup directory"
+    print "9. Exit"
     print 67 * "-"
 
 def update_menu():
@@ -43,7 +43,7 @@ loop=True
 
 while loop:          ## While loop which will keep going until loop = False
     print_menu()    ## Displays menu
-    choice = input("Enter your choice [1-7]: ")
+    choice = input("Enter your choice [1-6]: ")
     if choice==1:
         cls()
         header()
@@ -62,9 +62,11 @@ while loop:          ## While loop which will keep going until loop = False
             time.sleep(3)
             count += 1
             if count >= aantal:
+                print("list of files")
                 os.system("ls %s" % (tijd))
                 time.sleep(3)
                 x = x - 1
+                cls()
     ## scan multi ip's and save them as ip name's
     elif choice==2:
         cls()
@@ -121,10 +123,6 @@ while loop:          ## While loop which will keep going until loop = False
         ## scan with nmap
         ## cat -s lol.txt | grep open | cut -f1,2 -d" " > test1.txt
     elif choice==5:
-        cls()
-        os.execl(sys.executable, sys.executable, *sys.argv)
-        ## reload application test purpuse only
-    elif choice==6:
         update = True
         while update:
             cls()
@@ -133,9 +131,9 @@ while loop:          ## While loop which will keep going until loop = False
             choice = input("Enter your choice [1-3]: ")
             if choice==1:
                 print "You made the choice of Stable"
-                os.system("curl https://raw.githubusercontent.com/maestroi/autoenum/master/main.py -o main.py")
+                os.system("curl https://raw.githubusercontent.com/maestroi/autoenum/master/main.py -o mainv1.py")
                 cls()
-                os.system("python main.py")
+                os.system("python mainv1.py")
                 sys.exit()
             elif choice==2:
                 cls()
@@ -147,10 +145,28 @@ while loop:          ## While loop which will keep going until loop = False
             elif choice==3:
                 cls()
                 update = False
-    elif choice==7:
+    elif choice==6:
+        cls()
+        header()
+        choice = raw_input("Are you sure delete all the files except main.py? yes/no: ")
+        if choice == "yes":
+            os.system("find ! -name 'main.py' -type f -exec rm -f {} +")
+            os.system("find ! -name 'main.py' -type d -exec rm -r {} +")
+            cls()
+            print "everything is deleted!"
+        else:
+            cls()
+            print "nothing is deleted!"
+            time.sleep(2)
+        cls()
+    elif choice==9:
         cls()
         print "quitting!!"
         sys.exit()
+    elif choice==10:
+        cls()
+        os.execl(sys.executable, sys.executable, *sys.argv)
+        ## reload application test purpuse only
     else:
         # error if option is higher than 7
         cls()
