@@ -1,5 +1,4 @@
 __author__ = 'maestroi'
-print("version number 1.01")
 
 import os
 import time
