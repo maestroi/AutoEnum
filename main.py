@@ -141,7 +141,7 @@ while loop:          ## While loop which will keep going until loop = False
             elif choice==2:
                 cls()
                 print "You made the choice of Beta"
-                os.system("curl https://raw.githubusercontent.com/maestroi/autoenum/dubbel/v2/main.py -o main.py")
+                os.system("curl https://raw.githubusercontent.com/maestroi/autoenum/beta/main.py -o main.py")
                 cls()
                 os.system("python main.py")
                 sys.exit()
