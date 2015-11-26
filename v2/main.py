@@ -74,6 +74,7 @@ while loop:          ## While loop which will keep going until loop = False
             if os.path.exists(ipadres):
                 os.system("rm %s.txt " % ipadres)
             else:
+                cls()
                 print "Start scan!"
                 os.system("enum4linux %s > %s.txt" % (ipadres,ipadres))
                 time.sleep(3)
@@ -81,6 +82,7 @@ while loop:          ## While loop which will keep going until loop = False
                 cls()
             print "ipadres gescanned! \n"
             time.sleep(2)
+            cls()
         ## scan a single ip and output it with ip as name
     elif choice==3:
         cls()

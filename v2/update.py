@@ -2,6 +2,8 @@ import os
 import time
 import sys
 
+##todo Delte directory and move file to main en replace old
+
 def header():
     print "  __  __                 _             _ "
     print " |  \/  |               | |           (_)"
@@ -21,17 +23,13 @@ def update_menu():
     print 67 * "-"
 
 def stable():
-    os.system("wget https://github.com/maestroi/autoenum/archive/master.zip")
-    os.system("unzip master.zip")
-    os.system("rm master.zip")
+    os.system("curl https://raw.githubusercontent.com/maestroi/autoenum/master/main.py -o main.py")
 
 def beta():
-    os.system("wget https://raw.githubusercontent.com/maestroi/autoenum/dubbel/v2/main.py")
+    os.system("curl https://raw.githubusercontent.com/maestroi/autoenum/dubbel/v2/main.py -o main.py")
 
 def updater():
-    os.system("wget https://github.com/maestroi/autoenum/archive/dubbel.zip")
-    os.system("unzip dubbel.zip")
-    os.system("rm dubbel.zip")
+    os.system("curl https://raw.githubusercontent.com/maestroi/autoenum/dubbel/v2/updater.py -o update.py")
 
 
 update = True
@@ -40,33 +38,25 @@ while update:
     update_menu()
     choice = input("Enter your choice [1-2]: ")
     if choice==1:
-        count = True
-        while count:
-            if os.path.exists("autoenum-master"):
-                os.system("rm -rf autoenum-master")
-        else:
-            print "je hebt gekozen voor stable"
-            ##os.system("mv main.py main-old.py")
-            stable()
-            time.sleep(3)
-            cls()
-            os.system("python autoenum-master/main.py")
-            sys.exit()
+        print "You made the choice of Stable"
+        ##os.system("mv main.py main-old.py")
+        stable()
+        time.sleep(3)
+        cls()
+        os.system("python main.py")
+        sys.exit()
     elif choice==2:
-        count = True
-        while count:
-            if os.path.exists("autoenum-dubbel"):
-                os.system("rm -rf autoenum-dubbel")
-        else:
-            cls()
-            print "je hebt gekozen voor beta"
-            ##os.system("mv main.py main-old.py")
-            beta()
-            updater()
-            time.sleep(3)
-            cls()
-            os.system("python autoenum-dubbel/v2/main.py")
-            sys.exit()
+        cls()
+        print "You made the choice of Beta"
+        ##os.system("mv main.py main-old.py")
+        beta()
+        updater()
+        time.sleep(3)
+        cls()
+        os.system("python main.py")
+        sys.exit()
     elif choice==3:
          cls()
          update = False
+
+##curl https://raw.githubusercontent.com/maestroi/autoenum/dubbel/v2/main.py -o main.py
