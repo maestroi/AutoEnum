@@ -126,9 +126,10 @@ while loop:          ## While loop which will keep going until loop = False
     elif choice==6:
         update = True
         while update:
+            cls()
             header()
             update_menu()
-            choice = input("Enter your choice [1-2]: ")
+            choice = input("Enter your choice [1-3]: ")
             if choice==1:
                 print "You made the choice of Stable"
                 os.system("curl https://raw.githubusercontent.com/maestroi/autoenum/master/main.py -o main.py")
