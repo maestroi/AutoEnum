@@ -124,10 +124,27 @@ while loop:          ## While loop which will keep going until loop = False
         os.execl(sys.executable, sys.executable, *sys.argv)
         ## reload application test purpuse only
     elif choice==6:
-        cls()
-        os.system("python update.py")
-        sys.exit()
-        ## reload application test purpuse only
+        update = True
+        while update:
+            header()
+            update_menu()
+            choice = input("Enter your choice [1-2]: ")
+            if choice==1:
+                print "You made the choice of Stable"
+                os.system("curl https://raw.githubusercontent.com/maestroi/autoenum/master/main.py -o main.py")
+                cls()
+                os.system("python main.py")
+                sys.exit()
+            elif choice==2:
+                cls()
+                print "You made the choice of Beta"
+                os.system("curl https://raw.githubusercontent.com/maestroi/autoenum/dubbel/v2/main.py -o main.py")
+                cls()
+                os.system("python main.py")
+                sys.exit()
+            elif choice==3:
+                cls()
+                update = False
     elif choice==7:
         cls()
         print "quitting!!"
