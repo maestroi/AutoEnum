@@ -124,11 +124,12 @@ while loop:          ## While loop which will keep going until loop = False
     elif choice==6:
         cls()
         os.system("python update.py")
+        sys.exit()
         ## reload application test purpuse only
     elif choice==7:
         cls()
         print "quitting!!"
-        loop=False # This will make end to the while loop
+        sys.exit()
     else:
         # error if option is higher than 7
         cls()
