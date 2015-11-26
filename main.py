@@ -53,8 +53,8 @@ while loop:          ## While loop which will keep going until loop = False
         count = input("begin vanaf: ")
         aantal = input("tot ip-adres: ") +1
         os.system("mkdir %s" % (tijd))
-        x = True
-        while (True):
+        x = 1
+        while (x):
             cls()
             print "scanning.... %s.%s" % (ipadres,count)
             os.system("enum4linux %s.%s > %s/%s.%s.txt" % (ipadres,count,tijd,ipadres,count))
@@ -65,7 +65,7 @@ while loop:          ## While loop which will keep going until loop = False
                 print("list of files")
                 os.system("ls %s" % (tijd))
                 time.sleep(3)
-                x = False
+                x = x - 1
                 cls()
     ## scan multi ip's and save them as ip name's
     elif choice==2:
