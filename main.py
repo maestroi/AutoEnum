@@ -53,8 +53,8 @@ while loop:          ## While loop which will keep going until loop = False
         count = input("begin vanaf: ")
         aantal = input("tot ip-adres: ") +1
         os.system("mkdir %s" % (tijd))
-        x = 1
-        while (x):
+        x = True
+        while (True):
             cls()
             print "scanning.... %s.%s" % (ipadres,count)
             os.system("enum4linux %s.%s > %s/%s.%s.txt" % (ipadres,count,tijd,ipadres,count))
@@ -65,7 +65,7 @@ while loop:          ## While loop which will keep going until loop = False
                 print("list of files")
                 os.system("ls %s" % (tijd))
                 time.sleep(3)
-                x = x - 1
+                x = False
                 cls()
     ## scan multi ip's and save them as ip name's
     elif choice==2:
@@ -168,7 +168,7 @@ while loop:          ## While loop which will keep going until loop = False
         os.execl(sys.executable, sys.executable, *sys.argv)
         ## reload application test purpuse only
     else:
-        # error if option is higher than 7
+        # error if invalid option
         cls()
         raw_input("Wrong option! i think you need coffee and enter any key to try again..")
         cls()
