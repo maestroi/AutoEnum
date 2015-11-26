@@ -27,7 +27,7 @@ def print_menu():
     print "2. IP Scan"
     print "3. Test Ttool"
     print "4. nmap scan op 445"
-    print "5. reset tool"git
+    print "5. reset tool"
     print "6. update"
     print "7. Exit"
     print 67 * "-"
