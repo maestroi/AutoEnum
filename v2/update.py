@@ -40,24 +40,33 @@ while update:
     update_menu()
     choice = input("Enter your choice [1-2]: ")
     if choice==1:
-        cls()
-        print "je hebt gekozen voor stable"
-        ##os.system("mv main.py main-old.py")
-        stable()
-        time.sleep(3)
-        cls()
-        os.system("python autoenum-master/main.py")
-        sys.exit()
+        count = True
+        while count:
+            if os.path.exists("autoenum-master"):
+                os.system("rm -rf autoenum-master")
+        else:
+            print "je hebt gekozen voor stable"
+            ##os.system("mv main.py main-old.py")
+            stable()
+            time.sleep(3)
+            cls()
+            os.system("python autoenum-master/main.py")
+            sys.exit()
     elif choice==2:
-        cls()
-        print "je hebt gekozen voor beta"
-        ##os.system("mv main.py main-old.py")
-        beta()
-        updater()
-        time.sleep(3)
-        cls()
-        os.system("python autoenum-dubbel/v2/main.py")
-        sys.exit()
+        count = True
+        while count:
+            if os.path.exists("autoenum-dubbel"):
+                os.system("rm -rf autoenum-dubbel")
+        else:
+            cls()
+            print "je hebt gekozen voor beta"
+            ##os.system("mv main.py main-old.py")
+            beta()
+            updater()
+            time.sleep(3)
+            cls()
+            os.system("python autoenum-dubbel/v2/main.py")
+            sys.exit()
     elif choice==3:
          cls()
          update = False
