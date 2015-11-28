@@ -3,6 +3,7 @@ __author__ = 'maestroi'
 import os
 import time
 import sys
+import string
 
 def header():
     print "  __  __                 _             _ "
@@ -117,9 +118,13 @@ while loop:          ## While loop which will keep going until loop = False
                 count = count + 1
                 ##cls()
             print "ip-lijst gegenereerd! \n"
-        os.system('cat -s %s-iplist.txt | grep open | cut -f1,2 -d" " > %s-cat.txt' % (tijd,tijd))
-        os.system('cat %s-cat.txt' % (tijd))
-        time.sleep(2)
+        os.system('cat -s %s-iplist.txt | grep open | cut -f1,2 -d" " | cut -c 7- > %s-cat.txt' % (tijd,tijd))
+        list = os.popen(' %s-cat.csv' % (tijd)).read()
+        print 67 * "-"
+        print list
+        os.system('rm %s-cat.txt' % (tijd))
+        os.system('rm %s-iplist.txt' % (tijd))
+        time.sleep(10)
         ## scan with nmap
         ## cat -s lol.txt | grep open | cut -f1,2 -d" " > test1.txt
     elif choice==5:
@@ -158,6 +163,14 @@ while loop:          ## While loop which will keep going until loop = False
             cls()
             print "nothing is deleted!"
             time.sleep(2)
+        cls()
+    elif choice==7:
+        cls()
+        header()
+        ipadres = raw_input("ip-adres range: ")
+        var1 = os.popen("nmap -p 445 %s" % (ipadres)).read()
+        print var1
+        time.sleep(10)
         cls()
     elif choice==9:
         cls()
