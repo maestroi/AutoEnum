@@ -102,7 +102,7 @@ while loop:          ## While loop which will keep going until loop = False
             if count >= aantal:
                 x = x - 1
         ## test commands
-    elif choice==4:
+    elif choice==4: ##todo make list ready for enumerate
         cls()
         header()
         tijd = time.strftime("%H-%M-%S")
@@ -118,13 +118,13 @@ while loop:          ## While loop which will keep going until loop = False
                 count = count + 1
                 ##cls()
             print "ip-lijst gegenereerd! \n"
-        os.system('cat -s %s-iplist.txt | grep open | cut -f1,2 -d" " | cut -c 7- > %s-cat.txt' % (tijd,tijd))
-        list = os.popen(' %s-cat.csv' % (tijd)).read()
+        list = os.popen('cat -s %s-iplist.txt | grep open | cut -f2 -d" "' % (tijd)).read()
+        ##list = os.popen('%s-file.txt' % (tijd)).read()
         print 67 * "-"
         print list
-        os.system('rm %s-cat.txt' % (tijd))
-        os.system('rm %s-iplist.txt' % (tijd))
-        time.sleep(10)
+        ##os.system('rm %s-cat.txt' % (tijd))
+        ##os.system('rm %s-iplist.txt' % (tijd))
+        time.sleep(1)
         ## scan with nmap
         ## cat -s lol.txt | grep open | cut -f1,2 -d" " > test1.txt
     elif choice==5:
@@ -167,9 +167,12 @@ while loop:          ## While loop which will keep going until loop = False
     elif choice==7:
         cls()
         header()
+        tijd = time.strftime("%H-%M-%S")
         ipadres = raw_input("ip-adres range: ")
-        var1 = os.popen("nmap -p 445 %s" % (ipadres)).read()
-        print var1
+        print "Scan started this may take some while...."
+        os.system("nmap -p 20,21,22,23,25,53,69,80,110,119,137,139,143,161,162,389,443,445,465,546,547,587,990,993,995,445 %s > %s-test.txt" % (ipadres,tijd))
+        os.system('cat -s %s-test.txt | grep open %s-nmap.txt' % (tijd,tijd))
+        print "Scan finnished!"
         time.sleep(10)
         cls()
     elif choice==9:
