@@ -102,7 +102,7 @@ while loop:          ## While loop which will keep going until loop = False
             if count >= aantal:
                 x = x - 1
         ## test commands
-    elif choice==4: ##todo make list ready for enumerate
+    elif choice==4: ##todo make list ready for enumerate ##todo smb-check-vulns.nse toevoegen 
         cls()
         header()
         tijd = time.strftime("%H-%M-%S")
